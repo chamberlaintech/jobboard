@@ -1,9 +1,8 @@
 import multer from "multer";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import pkg from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
-import dotenv from "dotenv";
 
-dotenv.config();
+const { CloudinaryStorage } = pkg;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -16,7 +15,6 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "resumes",
     allowed_formats: ["pdf", "doc", "docx"],
-    resource_type: "auto",
   },
 });
 
