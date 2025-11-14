@@ -1,17 +1,16 @@
 import multer from "multer";
-import pkg from "multer-storage-cloudinary";
-import { v2 as cloudinary } from "cloudinary";
+import cloudinary from "cloudinary";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 
-const { CloudinaryStorage } = pkg;
-
-cloudinary.config({
+// configure cloudinary (v1)
+cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary,
+  cloudinary: cloudinary.v2,
   params: {
     folder: "resumes",
     allowed_formats: ["pdf", "doc", "docx"],
@@ -21,3 +20,4 @@ const storage = new CloudinaryStorage({
 const upload = multer({ storage });
 
 export default upload;
+
