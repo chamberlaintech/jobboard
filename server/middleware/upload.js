@@ -1,6 +1,7 @@
 import multer from "multer";
 import cloudinary from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import pkg from "multer-storage-cloudinary"; 
+const { CloudinaryStorage } = pkg;
 
 // configure cloudinary (v1)
 cloudinary.v2.config({
